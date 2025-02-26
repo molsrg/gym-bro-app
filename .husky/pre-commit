@@ -1,0 +1,2 @@
+npm install --package-lock-only
+npm run lint:fix

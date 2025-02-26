@@ -1,0 +1,222 @@
+{
+  "general": {
+    "inProgress": "In development...",
+    "error": {
+      "redirect": "На главную"
+    }
+  },
+  "settings": {
+    "language": {
+      "title": "Choose a language"
+    },
+    "app": {
+      "title": "App settings",
+      "calendarAlert": "Show hint above the calendar",
+      "SunIsFirst": "Make Sunday the first day",
+      "chartAlert": "Show hint above the chart"
+    },
+    "tickets": {
+      "title": "Help us improve the app",
+      "button": "Click here"
+    },
+    "donut": "Buy coffee for the developers",
+    "questions": "A bit of F.A.Q."
+  },
+  "layout": {
+    "statistic": "Statistics",
+    "settings": "Settings"
+  },
+  "questions": {
+    "1": {
+      "title": "Why can't I select a date for tomorrow, the day after tomorrow, etc.?",
+      "content": "To prevent distortion of statistics, we have disabled the functionality for pre-selected training days."
+    },
+    "2": {
+      "title": "Why can't I see my statistics?",
+      "content": "Most likely, you have recently joined our app. To display statistics, you need to mark at least 5 days."
+    },
+    "3": {
+      "title": "Are there plans to improve the app and add new features?",
+      "content": "Yes, we are currently looking for new ideas. If you have any suggestions, we would be happy to hear them. The feedback form is on this page."
+    }
+  },
+  "chart": {
+    "tabs": {
+      "comparison": "Compare with others",
+      "muscle": "Muscle groups",
+      "satisfaction": "Mood"
+    },
+    "progress": {
+      "label": {
+        "myProgress": "My progress",
+        "otherProgress": "Progress of other participants"
+      },
+      "emptyData": "You still don't have enough data to display. Keep training!"
+    }
+  },
+  "alert": {
+    "calendarAlert": "Mark your progress in the gym",
+    "chartAlert": "Compare your stats with other participants",
+    "achievementsAlert": "Check your achievements"
+  },
+  "achievements": {
+    "1": {
+      "name": "Lightning start",
+      "condition": "Mark 5 workouts"
+    },
+    "2": {
+      "name": "Disciplined",
+      "condition": "Mark 30 workouts"
+    },
+    "3": {
+      "name": "Still want to sleep",
+      "condition": "Skip 3 workouts in a row"
+    },
+    "4": {
+      "name": "Weekend is no excuse to be lazy",
+      "condition": "Work out on a weekend"
+    },
+    "5": {
+      "name": "Prodigal son",
+      "condition": "Return to training after 7 days of absence"
+    },
+    "6": {
+      "name": "Versatile",
+      "condition": "Try all standard types of workouts"
+    },
+    "7": {
+      "name": "I know better!",
+      "condition": "Create your own workout type 5 times"
+    },
+    "8": {
+      "name": "Regular visitor",
+      "condition": "Open the app for 7 days in a row"
+    },
+    "9": {
+      "name": "Legend",
+      "condition": "Mark 100 workouts"
+    },
+    "10": {
+      "name": "Collector",
+      "condition": "Unlock all achievements"
+    }
+  },
+  "calendar": {
+    "day": {
+      "Mon": "Mon",
+      "Tue": "Tue",
+      "Wed": "Wed",
+      "Thu": "Thu",
+      "Fri": "Fri",
+      "Sat": "Sat",
+      "Sun": "Sun"
+    },
+    "month": {
+      "January": "January",
+      "February": "February",
+      "March": "March",
+      "April": "April",
+      "May": "May",
+      "June": "June",
+      "July": "July",
+      "August": "August",
+      "September": "September",
+      "October": "October",
+      "November": "November",
+      "December": "December"
+    }
+  },
+  "modal": {
+    "welcome": {
+      "title": "Glad to see you, {name} ⚡️",
+      "body": {
+        "title": "We have developed a new service that will help you with your workouts!",
+        "list": {
+          "1": "Track your progress",
+          "2": "View statistics",
+          "3": "Share with friends",
+          "4": "Get stronger"
+        }
+      },
+      "footer": {
+        "submit": "Let's start!"
+      }
+    },
+    "support": {
+      "title": "Feedback form",
+      "description": "Help us improve the app",
+      "topic": {
+        "label": "Choose a topic",
+        "options": {
+          "bug": "Bug",
+          "feature": "Feature",
+          "documentation": "Documentation",
+          "other": "Other"
+        }
+      },
+      "textarea": {
+        "placeholder": "Enter a message..."
+      },
+      "balance": {
+        "title": " *To receive coins for contributing to the app's support, enable this toggle. Coins will be credited after moderation.",
+        "toggle": "I want to receive coins",
+        "placeholder": "Enter your username"
+      },
+      "button": {
+        "submit": "Submit",
+        "delete": "Delete"
+      }
+    },
+    "planning": {
+      "title": "Workout planning",
+      "description": "Select a date, and the bot will send a notification when it's time for the workout",
+      "or": "OR",
+      "button": {
+        "submit": "Plan",
+        "open": "Let's plan a workout"
+      }
+    },
+    "mainActive": {
+      "title": "Let's fill in some data",
+      "description": "First, check the date - {date}",
+      "satisfaction": "Rate your satisfaction with the workout",
+      "muscleGroup": "Select muscle groups",
+      "muscleOptions": {
+        "breast": "Chest",
+        "legs": "Legs",
+        "back": "Back",
+        "biceps": "Biceps",
+        "triceps": "Triceps",
+        "shoulders": "Shoulders",
+        "circuit": "Circuit",
+        "cardio": "Cardio",
+        "press": "Abs",
+        "stretching": "Stretching"
+      },
+      "customActivity": {
+        "switch": "You can enter your own activity",
+        "description": "*It will be considered as <b>other activity</b>",
+        "placeholder": "Enter the activity here"
+      },
+      "commentTraining": {
+        "switch": "I want to comment on the workout",
+        "placeholder": "Leave a comment here"
+      },
+      "footer": {
+        "submit": "Add",
+        "delete": "Delete"
+      }
+    },
+    "checkActivity": {
+      "title": "You had a great workout!",
+      "description": "Workout date - {date}",
+      "muscleGroup": "On this day, you trained",
+      "activity": "Added your own activity",
+      "comment": "You also left a note, read it",
+      "footer": {
+        "submit": "Add",
+        "delete": "Delete"
+      }
+    }
+  }
+}
