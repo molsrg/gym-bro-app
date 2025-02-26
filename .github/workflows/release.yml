@@ -1,0 +1,128 @@
+name: Release with Telegram Notify and create CHANGELOG.md
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.extract_version.outputs.version }}
+      prerelease: ${{ steps.extract_version.outputs.prerelease }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Extract version and prerelease status from project
+        id: extract_version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          PRERELEASE=$(node -p "require('./package.json').prerelease || false")
+          echo "Extracted version: $VERSION"
+          echo "Prerelease status: $PRERELEASE"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "prerelease=$PRERELEASE" >> $GITHUB_OUTPUT
+
+  release:
+    runs-on: ubuntu-latest
+    needs: prepare
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Download and Install git-cliff
+        run: |
+          curl -L "https://github.com/orhun/git-cliff/releases/download/v2.2.1/git-cliff-2.2.1-x86_64-unknown-linux-gnu.tar.gz" -o git-cliff.tar.gz
+          tar -xzf git-cliff.tar.gz
+          mv git-cliff-2.2.1/git-cliff /usr/local/bin/
+
+      - name: Set tag suffix
+        run: |
+          if [ "${{ needs.prepare.outputs.prerelease }}" == "true" ]; then
+            echo "suffix=-alpha" >> $GITHUB_ENV
+          else
+            echo "suffix=" >> $GITHUB_ENV
+          fi
+
+      - name: Create Git tag
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git tag -a v${{ needs.prepare.outputs.version }}${{ env.suffix }} -m "Release v${{ needs.prepare.outputs.version }}${{ env.suffix }}"
+          git push origin v${{ needs.prepare.outputs.version }}${{ env.suffix }}
+
+      - name: Generate Changelog for Release Body
+        run: |
+          git-cliff --config cliff.toml --latest --output CHANGELOG_LATEST.md
+          CHANGELOG=$(cat CHANGELOG_LATEST.md)
+          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+          echo "$CHANGELOG" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Set release name
+        run: |
+          if [ "${{ needs.prepare.outputs.prerelease }}" == "true" ]; then
+          echo "release_name=Release v${{ needs.prepare.outputs.version }}-alpha" >> $GITHUB_ENV
+          else
+          echo "release_name=Release v${{ needs.prepare.outputs.version }}" >> $GITHUB_ENV
+          fi
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        with:
+          tag_name: v${{ needs.prepare.outputs.version }}${{ env.suffix }}
+          release_name: ${{ env.release_name }}
+          body: |
+            ${{ env.CHANGELOG }}
+          draft: false
+          prerelease: ${{ needs.prepare.outputs.prerelease == 'true' }}
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: [prepare, release]
+    steps:
+      - name: Telegram Notify Success
+        uses: appleboy/telegram-action@master
+        if: ${{ success() }}
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ✅ *A new version of the app has been released*
+
+            🧑‍💻 Developer: *@${{github.actor}}*
+            🚀 Version: *${{ needs.prepare.outputs.version }}${{ needs.prepare.outputs.prerelease == 'true' && ' (alpha)' || '' }}*
+            🔗 Href: https://t.me/Gym8roBot/app
+          format: markdown
+
+      - name: Telegram Notify Failure
+        uses: appleboy/telegram-action@master
+        if: ${{ failure()  }}
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ❌ *The release of the new version failed...*
+
+            🧑‍💻 Developer: *@${{github.actor}}*
+            🚀 Version: *${{ needs.prepare.outputs.version }}${{ needs.prepare.outputs.prerelease == 'true' && ' (alpha)' || '' }}*
+            🔗 Href: https://github.com/${{github.repository}}/actions/runs/${{ github.run_id }}
+          format: markdown

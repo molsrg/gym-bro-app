@@ -1,0 +1,56 @@
+name: Check version change
+
+on:
+  pull_request_target:
+    types:
+      - opened
+    branches:
+      - main
+
+jobs:
+  check-version-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Compare version in package.json
+        id: check_version
+        run: |
+          VERSION=$(jq -r .version package.json)
+          PRERELEASE=$(jq -r '.prerelease // false' package.json)
+          echo "Current version in PR branch: $VERSION"
+          echo "Current prerelease in PR branch: $PRERELEASE"
+
+          git fetch origin ${{ github.event.pull_request.base.ref }}:refs/remotes/origin/base
+          OLD_VERSION=$(git show origin/base:package.json | jq -r .version)
+          OLD_PRERELEASE=$(git show origin/base:package.json | jq -r '.prerelease // false')
+          echo "Version in target branch (${{ github.event.pull_request.base.ref }}): $OLD_VERSION"
+          echo "Prerelease in target branch (${{ github.event.pull_request.base.ref }}): $OLD_PRERELEASE"
+
+          if [ "$PRERELEASE" == "$OLD_PRERELEASE" ] && [ "$PRERELEASE" != "false" ]; then
+            echo "Error: The prerelease status in the PR branch ($PRERELEASE) must differ from the target branch ($OLD_PRERELEASE)."
+            exit 1
+          fi
+
+          HIGHER_VERSION=$(echo -e "$VERSION\n$OLD_VERSION" | sort -V | tail -n1)
+
+          if [ "$VERSION" == "$OLD_VERSION" ]; then
+            if [ "$OLD_PRERELEASE" == "true" ] && [ "$PRERELEASE" == "false" ]; then
+              echo "Version is the same, but this is allowed because the target branch was a prerelease."
+              exit 0
+            else
+              echo "Error: The new version ($VERSION) must be higher than the old version ($OLD_VERSION)."
+              exit 1
+            fi
+          fi
+
+          if [ "$VERSION" != "$HIGHER_VERSION" ]; then
+            echo "Error: The new version ($VERSION) must be higher than the old version ($OLD_VERSION)."
+            exit 1
+          fi
+
+          echo "Version check passed. New version ($VERSION) is valid."

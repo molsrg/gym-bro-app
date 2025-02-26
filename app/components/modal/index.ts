@@ -1,0 +1,5 @@
+export { default as CheckDayActivity } from './CheckDayActivity.vue'
+export { default as DayActivityModal } from './DayActivityModal.vue'
+export { default as ScheduleTrainingModal } from './ScheduleTrainingModal.vue'
+export { default as TicketsModal } from './TicketsModal.vue'
+export { default as WelcomeModal } from './WelcomeModal.vue'
