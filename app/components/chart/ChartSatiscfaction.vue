@@ -70,6 +70,6 @@ watchEffect(() => {
   <Chart
     :data="chartData"
     :options="chartOptions"
-    class="h-[35vh]" type="line"
+    class="h-[45vh]" type="line"
   />
 </template>
