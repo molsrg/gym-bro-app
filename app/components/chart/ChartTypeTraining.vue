@@ -70,7 +70,7 @@ watchEffect(() => {
   <Chart
     :data="chartData"
     :options="chartOptions"
-    class="h-[50vh]"
+    class="h-[45vh]"
     type="radar"
   />
 </template>
