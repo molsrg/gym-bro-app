@@ -1,2 +1,3 @@
 npm install --package-lock-only
+git add .
 npm run lint:fix
