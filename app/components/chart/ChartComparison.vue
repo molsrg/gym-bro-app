@@ -16,7 +16,7 @@ const chartData = computed(() => ({
   datasets: [
     {
       label: t('chart.progress.label.myProgress'),
-      data: props.datasets.userAverages,
+      data: props.datasets?.userAverages || [],
       backgroundColor: 'rgba(0, 212, 146, 0.2)',
       borderColor: '#00d492',
       borderWidth: 1,
@@ -29,7 +29,7 @@ const chartData = computed(() => ({
     },
     {
       label: t('chart.progress.label.otherProgress'),
-      data: props.datasets.totalAverages,
+      data: props.datasets?.totalAverages || [],
       backgroundColor: 'rgba(96, 152, 207, 0.6)',
       borderColor: 'rgb(96, 152, 207)',
       borderWidth: 1,
@@ -105,7 +105,7 @@ const chartOptions = {
   <Chart
     :data="chartData"
     :options="chartOptions"
-    class="h-[50vh]"
+    class="h-[45vh]"
     type="bar"
   />
 </template>
