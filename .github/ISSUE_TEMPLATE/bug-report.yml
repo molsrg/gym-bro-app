@@ -1,6 +1,6 @@
-name: "🐛 Bug report"
+name: 🐛 Bug report
 description: Report a bug to help us improve the app.
-labels: [ "bug"]
+labels: [bug]
 body:
   - type: markdown
     attributes:
