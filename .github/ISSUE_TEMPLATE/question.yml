@@ -1,0 +1,14 @@
+name: "💬 Question"
+description: Ask a question about the app.
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before requesting a feature, please make sure that you have read through our existing [issues](https://github.com/molsrg/gym-bro-app/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20label%3Aquestion)).
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true

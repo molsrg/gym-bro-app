@@ -1,0 +1,20 @@
+name: "🚀 Feature request"
+description: Suggest an idea or enhancement for the app.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before requesting a feature, please make sure that you have read through our existing [issues](https://github.com/molsrg/gym-bro-app/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20label%3Aenhancement).
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of the feature or enhancement you are suggesting. Include possible use cases, benefits, and any alternatives you have considered.
+    validations:
+      required: true
+  - type: textarea
+    id: additonal
+    attributes:
+      label: Additional context
+      description: If applicable, add any other context or screenshots here.
