@@ -1,9 +1,8 @@
 name: Check version change
 
 on:
-  pull_request_target:
-    types:
-      - opened
+  pull_request:
+    types: [opened, reopened, edited, synchronize]
     branches:
       - main
 
@@ -12,10 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout target branch (main)
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.base.ref }}
+
+      - name: Get version from target branch
+        id: get_target_version
+        run: |
+          OLD_VERSION=$(jq -r .version package.json)
+          OLD_PRERELEASE=$(jq -r '.prerelease // false' package.json)
+          echo "Version in target branch (${{ github.event.pull_request.base.ref }}): $OLD_VERSION"
+          echo "Prerelease in target branch (${{ github.event.pull_request.base.ref }}): $OLD_PRERELEASE"
+          echo "OLD_VERSION=$OLD_VERSION" >> $GITHUB_ENV
+          echo "OLD_PRERELEASE=$OLD_PRERELEASE" >> $GITHUB_ENV
+
+      - name: Checkout PR branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Compare version in package.json
         id: check_version
@@ -24,12 +38,6 @@ jobs:
           PRERELEASE=$(jq -r '.prerelease // false' package.json)
           echo "Current version in PR branch: $VERSION"
           echo "Current prerelease in PR branch: $PRERELEASE"
-
-          git fetch origin ${{ github.event.pull_request.base.ref }}:refs/remotes/origin/base
-          OLD_VERSION=$(git show origin/base:package.json | jq -r .version)
-          OLD_PRERELEASE=$(git show origin/base:package.json | jq -r '.prerelease // false')
-          echo "Version in target branch (${{ github.event.pull_request.base.ref }}): $OLD_VERSION"
-          echo "Prerelease in target branch (${{ github.event.pull_request.base.ref }}): $OLD_PRERELEASE"
 
           if [ "$PRERELEASE" == "$OLD_PRERELEASE" ] && [ "$PRERELEASE" != "false" ]; then
             echo "Error: The prerelease status in the PR branch ($PRERELEASE) must differ from the target branch ($OLD_PRERELEASE)."
