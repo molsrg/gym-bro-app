@@ -6,6 +6,8 @@ on:
       - opened
       - reopened
       - synchronize
+    branches:
+      - main
 
 jobs:
   check-branches:
