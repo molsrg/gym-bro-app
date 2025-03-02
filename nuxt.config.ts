@@ -37,13 +37,7 @@ export default defineNuxtConfig({
     port: Number.parseInt(process.env.NUXT_DEV_SERVER_PORT || '3000', 10),
   },
 
-  modules: [
-    '@nuxt/ui',
-    '@nuxt/eslint',
-    '@pinia/nuxt',
-    '@primevue/nuxt-module',
-    '@nuxtjs/i18n',
-  ],
+  modules: ['@nuxt/ui', '@nuxt/eslint', '@pinia/nuxt', '@primevue/nuxt-module', '@nuxtjs/i18n', 'compodium'],
 
   primevue: {
     directives: {
