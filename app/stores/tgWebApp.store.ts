@@ -16,7 +16,7 @@ export const useTgWebAppStore = defineStore('tgWebAppStore', {
     async init() {
       this.setWebAppData()
       if (['ios', 'android'].includes(this.webAppData.platform)) {
-        // Telegram.WebApp.requestFullscreen()
+        Telegram.WebApp.requestFullscreen()
         this.isMobile = true
       }
 
