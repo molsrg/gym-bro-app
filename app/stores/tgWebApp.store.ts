@@ -20,6 +20,9 @@ export const useTgWebAppStore = defineStore('tgWebAppStore', {
         this.isMobile = true
       }
       Telegram.WebApp.disableVerticalSwipes()
+      Telegram.WebApp.SettingsButton.show()
+      Telegram.WebApp.SettingsButton.onClick(() =>
+        navigateTo('/settings'))
 
       if (this.webAppData.version > '6.0') {
         Telegram.WebApp.lockOrientation('portrait')
