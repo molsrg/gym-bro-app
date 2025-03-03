@@ -16,9 +16,13 @@ export const useTgWebAppStore = defineStore('tgWebAppStore', {
     async init() {
       this.setWebAppData()
       if (['ios', 'android'].includes(this.webAppData.platform)) {
-        // Telegram.WebApp.requestFullscreen()
+        Telegram.WebApp.requestFullscreen()
         this.isMobile = true
       }
+      Telegram.WebApp.disableVerticalSwipes()
+      Telegram.WebApp.SettingsButton.show()
+      Telegram.WebApp.SettingsButton.onClick(() =>
+        navigateTo('/settings'))
 
       if (this.webAppData.version > '6.0') {
         Telegram.WebApp.lockOrientation('portrait')

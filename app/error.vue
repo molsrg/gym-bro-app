@@ -18,7 +18,7 @@ const handleError = () => clearError({ redirect: '/' })
       <UButton
         :label="$t('general.error.redirect')"
         class="mt-4"
-        color="necutral"
+        color="neutral"
         size="xl"
         variant="solid"
         @click="handleError"
