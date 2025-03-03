@@ -191,7 +191,8 @@
         "circuit": "Круговая",
         "cardio": "Кардио",
         "press": "Пресс",
-        "stretching": "Растяжка"
+        "stretching": "Растяжка",
+        "custom": "Своя активность"
       },
       "customActivity": {
         "switch": "Ты можешь ввести свою активность",

@@ -191,7 +191,8 @@
         "circuit": "Circuit",
         "cardio": "Cardio",
         "press": "Abs",
-        "stretching": "Stretching"
+        "stretching": "Stretching",
+        "custom": "Own activity"
       },
       "customActivity": {
         "switch": "You can enter your own activity",
