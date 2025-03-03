@@ -1,8 +1,8 @@
 {
   "name": "gym-bro-app",
   "type": "module",
-  "version": "0.0.3",
-  "prerelease": true,
+  "version": "0.0.4",
+  "prerelease": false,
   "private": true,
   "scripts": {
     "build": "nuxt build",
