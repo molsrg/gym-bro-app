@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  class: {
-    type: String,
-    default: '',
-  },
+interface Props {
+  title: string
+  class?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  title: '',
+  class: '',
 })
 </script>
 

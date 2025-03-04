@@ -1,21 +1,13 @@
 <script lang="ts" setup>
-defineProps({
-  iconName: {
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  condition: {
-    type: String,
-    required: true,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
+interface Props {
+  iconName: string
+  name: string
+  condition: string
+  disabled?: boolean
+}
+
+withDefaults(defineProps<Props>(), {
+  disabled: false,
 })
 </script>
 

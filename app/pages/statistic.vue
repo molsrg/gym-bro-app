@@ -6,7 +6,6 @@ import { chartTabs } from '~/constants/activity/chart'
 
 const { t } = useI18n()
 
-const selectedTabs = ref('muscle')
 const achievements = computed(() => {
   return achievementsList.map((achievement) => {
     const status = useActiveStore().achievements.find(status => status.id === achievement.id)?.status ?? false
@@ -40,7 +39,8 @@ const muscleGroups = computed(() => {
       @update:open="useAppStore().changeAppSettings(3)"
     />
     <UTabs
-      v-model="selectedTabs" :items="chartTabs" :ui="{ trigger: 'flex-1', list: 'px-0' }" size="sm"
+      default-value="1"
+      :items="chartTabs" :ui="{ trigger: 'flex-1', list: 'px-0' }" size="sm"
       variant="link"
     >
       <template #default="{ item }">

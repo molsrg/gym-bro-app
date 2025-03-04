@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { prerelease, version } from './package.json'
+import { prerelease, version } from '~~/package.json'
 
 const items = computed(() => {
   return [
