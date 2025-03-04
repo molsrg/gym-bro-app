@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { muscleGroups, satisfactionColor } from '~/constants/activity/dayActivity'
+import { muscleGroups } from '~/constants/activity/dayActivity'
 import { extractDateComponents } from '~/helpers/calendar.helper'
+import { satisfactionColor } from '~/helpers/chart.helper'
 
 const props = defineProps<{
   date: object

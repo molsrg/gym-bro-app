@@ -23,3 +23,38 @@ export function useQuestions() {
     questions,
   }
 }
+
+export function useTrainingInfo() {
+  const { t } = useI18n()
+
+  const typesTraining = computed(() => [
+    {
+      label: t('alert.typesTrainingOnCalendar.today'),
+      icon: 'i-solar-dumbbell-large-minimalistic-broken',
+      color: 'text-[var(--ui-secondary)]',
+    },
+    {
+      label: t('alert.typesTrainingOnCalendar.rest'),
+      icon: 'i-solar-dumbbell-large-minimalistic-broken',
+    },
+    {
+      label: t('alert.typesTrainingOnCalendar.unavailable'),
+      icon: 'i-solar-dumbbell-large-minimalistic-broken',
+      color: 'text-[var(--ui-text-muted)]',
+    },
+    {
+      label: t('alert.typesTrainingOnCalendar.train'),
+      icon: 'i-solar-dumbbell-large-minimalistic-broken',
+      color: 'text-[var(--ui-primary)]',
+    },
+    {
+      label: t('alert.typesTrainingOnCalendar.planned'),
+      icon: 'i-solar-dumbbell-large-minimalistic-broken',
+      slot: 'planning',
+    },
+  ])
+
+  return {
+    typesTraining,
+  }
+}

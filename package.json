@@ -2,7 +2,7 @@
   "name": "gym-bro-app",
   "type": "module",
   "version": "0.0.5",
-  "prerelease": true,
+  "prerelease": false,
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -15,7 +15,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@nuxt/ui": "3.0.0-alpha.11",
+    "@nuxt/ui": "3.0.0-alpha.12",
     "@nuxtjs/i18n": "^9.1.5",
     "@pinia/nuxt": "^0.9.0",
     "axios": "^1.7.9",

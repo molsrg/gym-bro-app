@@ -1,13 +1,10 @@
 <script lang="ts" setup>
-const props = defineProps({
-  datasets: {
-    type: Object as () => {
-      months: string[]
-      totalAverages: number[]
-      userAverages: number[]
-    },
-    required: true,
-  },
+interface Props {
+  datasets?: object
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  datasets: () => ({}),
 })
 
 const { t } = useI18n()

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useViewport } from 'vue-tg'
+import { LoadingIndicator } from '~/components/nuxt'
 
 const app = useAppConfig()
 onMounted(async () => {
@@ -8,15 +9,15 @@ onMounted(async () => {
 
 const marginTopCalculate = computed(() => {
   const { contentSafeAreaInset } = useViewport()
-  return `${contentSafeAreaInset.value.top * 1.8}px`
+  return `${contentSafeAreaInset.value.top * 1.9}px`
 })
 </script>
 
 <template>
-  <div :style="{ marginTop: marginTopCalculate }">
+  <div :style="{ paddingTop: marginTopCalculate, paddingBottom: '10px' }">
     <UApp :toaster="app.toaster">
       <NuxtRouteAnnouncer />
-      <NuxtLoadingIndicator color="#00d492" />
+      <LoadingIndicator color="#00d492" :style="{ top: marginTopCalculate }" />
       <NuxtLayout>
         <div class="mx-auto max-w-[95%] mt-2">
           <NuxtPage />

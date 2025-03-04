@@ -57,7 +57,14 @@
   "alert": {
     "calendarAlert": "Mark your progress in the gym",
     "chartAlert": "Compare your stats with other participants",
-    "achievementsAlert": "Check your achievements"
+    "achievementsAlert": "Check your achievements",
+    "typesTrainingOnCalendar": {
+      "today": "Today",
+      "rest": "Rest Day",
+      "unavailable": "Unavailable",
+      "train": "Training Day",
+      "planned": "Planned"
+    }
   },
   "achievements": {
     "1": {

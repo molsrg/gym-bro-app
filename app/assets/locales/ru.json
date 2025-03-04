@@ -57,7 +57,14 @@
   "alert": {
     "calendarAlert": "Отмечай свой прогресс в зале",
     "chartAlert": "Сравни свои показатели с другими участниками",
-    "achievementsAlert": "Проверь свои достижения"
+    "achievementsAlert": "Проверь свои достижения",
+    "typesTrainingOnCalendar": {
+      "today": "Сегодня",
+      "rest": "День отдыха",
+      "unavailable": "Недоступно",
+      "train": "День тренировки",
+      "planned": "Запланировано"
+    }
   },
   "achievements": {
     "1": {
