@@ -1,14 +1,13 @@
 <script lang="ts" setup>
-defineProps({
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  label: {
-    type: String,
-    default: '',
-  },
+interface Props {
+  disabled?: boolean
+  label?: string
+}
+withDefaults(defineProps<Props>(), {
+  disabled: false,
+  label: '',
 })
+
 const { t } = useI18n()
 </script>
 

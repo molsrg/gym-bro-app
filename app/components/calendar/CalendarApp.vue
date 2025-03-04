@@ -2,20 +2,18 @@
 import { CalendarDate } from '@internationalized/date'
 import { isDateUnavailable, isNextDateDisabled, monthTranslate } from '~/helpers/calendar.helper'
 
-const props = defineProps({
-  selectedDays: {
-    type: Array,
-    default: () => [],
-  },
-  iconName: {
-    type: String,
-    default: 'i-solar-dumbbell-large-minimalistic-broken',
-  },
-  scheduleDays: {
-    type: Array,
-    default: () => [],
-  },
+interface Props {
+  selectedDays?: string[]
+  scheduleDays?: string[]
+  iconName?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  selectedDays: () => [],
+  scheduleDays: () => [],
+  iconName: () => 'i-solar-dumbbell-large-minimalistic-broken',
 })
+
 const emit = defineEmits(['update:modelValue'])
 
 const { t } = useI18n()

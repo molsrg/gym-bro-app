@@ -1,13 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import Chart from 'primevue/chart'
 
-const props = defineProps({
-  datasets: {
-    type: Object,
-    required: false,
-    default: () => ({}),
-  },
+interface Props {
+  datasets?: object
+}
 
+const props = withDefaults(defineProps<Props>(), {
+  datasets: () => ({}),
 })
 
 const chartData = ref({

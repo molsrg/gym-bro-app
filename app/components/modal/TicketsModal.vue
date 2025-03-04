@@ -53,7 +53,6 @@ function reset() {
         <USelectMenu
           v-model="selectedTopic"
           :items="ticketsTopic"
-          :placeholder="t('modal.support.topic.placeholder')"
           :search-input="false"
           :ui="{
             trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200',
