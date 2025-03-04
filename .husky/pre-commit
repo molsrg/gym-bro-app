@@ -1,3 +1,3 @@
-npm install --package-lock-only
+pnpm install --lockfile-only
 git add .
-npm run lint:fix
+pnpm run lint:fix
