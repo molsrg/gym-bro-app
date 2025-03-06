@@ -26,6 +26,7 @@ const selectedDays = computed({
 <template>
   <UCalendar
     v-model="selectedDays"
+    :min-value="useTgWebAppStore().registrationDate"
     :default-placeholder="new CalendarDate((new Date()).getFullYear(), (new Date()).getMonth() + 1, (new Date()).getDate())"
     :fixed-weeks="false"
     :is-date-disabled="isNextDateDisabled"

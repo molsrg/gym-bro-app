@@ -7,9 +7,8 @@ const props = defineProps<{
   date: object
 }>()
 
-const slideover = useOverlay()
+const emit = defineEmits(['close'])
 const { t } = useI18n()
-
 const isCustomActivityVisible = ref(false)
 const isCommentVisible = ref(false)
 const isLoadingSubmit = ref(false)
@@ -51,7 +50,7 @@ async function submitForm() {
   try {
     await useActiveStore().createCheckIn(payload)
     resetModal()
-    await slideover.close()
+    emit('close')
     await useActiveStore().getCheckIns()
   }
   catch (error) {

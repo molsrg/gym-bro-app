@@ -1,3 +1,4 @@
+import { CalendarDate } from '@internationalized/date'
 import { useWebAppTheme } from 'vue-tg'
 import { useCloudStorage, useMiniApp } from 'vue-tg/latest'
 import WelcomeModal from '~/components/modal/WelcomeModal.vue'
@@ -9,6 +10,7 @@ export const useTgWebAppStore = defineStore('tgWebAppStore', {
     initDataUnsafe: null,
     initData: null,
 
+    registrationDate: new CalendarDate(2024, 11, 1),
     isMobile: false,
   }),
 

@@ -8,7 +8,8 @@ const props = defineProps<{
   config: object
 }>()
 
-const modal = useOverlay()
+const emit = defineEmits(['close'])
+
 const { t } = useI18n()
 
 const isLoadingDelete = ref(false)
@@ -32,7 +33,7 @@ async function deleteActivity() {
   try {
     await useActiveStore().deleteCheckIn(payload)
     resetModal()
-    await modal.close()
+    emit('close')
     await useActiveStore().getCheckIns()
   }
   catch (error) {
@@ -60,14 +61,11 @@ watch(() => props.config, (newConfig) => {
 
 <template>
   <UModal
-    :description="t('modal.checkActivity.description', { date })"
     :dismissible="false"
-    :title="t('modal.checkActivity.title')"
-    close
     @update:open="resetModal"
   >
     <template #header>
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-start w-full">
         <div class="flex gap-2 items-center">
           <UAvatar
             :class="satisfactionColor(satisfaction)"
@@ -88,7 +86,7 @@ watch(() => props.config, (newConfig) => {
             </p>
           </div>
         </div>
-        <UButton color="neutral" icon="i-lucide-x" variant="ghost" @click="modal.close()" />
+        <UButton color="neutral" icon="i-lucide-x" variant="ghost" @click="$emit('close')" />
       </div>
     </template>
 

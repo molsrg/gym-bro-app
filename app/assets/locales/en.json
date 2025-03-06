@@ -3,6 +3,23 @@
     "inProgress": "In development...",
     "error": {
       "redirect": "На главную"
+    },
+    "date": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "tomorrow": "Tomorrow",
+      "day_ago_2": "days ago",
+      "day_ago_5": "days ago",
+      "more_month_ago": "> a month ago"
+    }
+  },
+  "leaderboard": {
+    "table": {
+      "key": {
+        "name": "Name",
+        "lastActivity": "Last Activity",
+        "score": "Score"
+      }
     }
   },
   "settings": {

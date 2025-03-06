@@ -9,8 +9,7 @@ import {
   isObjectInArray,
 } from '~/helpers/calendar.helper'
 
-const slideover = useOverlay()
-const modal = useOverlay()
+const overlay = useOverlay()
 const { typesTraining } = useTrainingInfo()
 // TODO: remove this when the API is ready
 onMounted(async () => {
@@ -18,6 +17,9 @@ onMounted(async () => {
   await useActiveStore().getCheckIns()
   useActiveStore().toggleLoadingCalendar()
 })
+
+const dayActivityModal = overlay.create(DayActivityModal)
+const CheckDayActivityModal = overlay.create(CheckDayActivity)
 
 // Find day & send request by info Day
 async function changeDayActivity(days) {
@@ -33,17 +35,18 @@ async function changeDayActivity(days) {
   if (isObjectInArray(mainActive, date))
     await openDayActivityModal(date)
   else
-    slideover.open(DayActivityModal, { date })
+    await dayActivityModal.open({ date })
 }
 
 async function openDayActivityModal(date) {
   const config = await useActiveStore().getDayActivity(extractDateComponents(date))
-  modal.open(CheckDayActivity, { date, config })
+  CheckDayActivityModal.open({ date, config })
 }
 </script>
 
 <template>
   <div class="flex flex-col items-center justify-center gap-2">
+    <UButton label="1223" color="tertiary" />
     <UCollapsible
       v-if="useAppStore().isAppSettings(1)" class="flex flex-col w-full gap-0.5"
     >

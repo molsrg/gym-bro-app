@@ -13,6 +13,10 @@ const items = computed(() => {
     [
       { badge: `${version}${prerelease ? '-alpha' : ''}` },
       {
+        icon: 'material-symbols-light:social-leaderboard-outline',
+        to: '/leaderboard',
+      },
+      {
         icon: 'i-solar-chart-outline',
         to: '/statistic',
       },
