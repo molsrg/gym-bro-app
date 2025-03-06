@@ -37,7 +37,7 @@ export const useTgWebAppStore = defineStore('tgWebAppStore', {
     },
 
     async setInitData() {
-      const modal = useModal()
+      const modal = useOverlay()
       const initData = useMiniApp().initData
       const initDataUnsafe = useMiniApp().initDataUnsafe.user
 

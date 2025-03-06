@@ -11,7 +11,7 @@ defineProps<{
   scheduleDays: object
 }>()
 
-const modal = useModal()
+const modal = useOverlay()
 const { t } = useI18n()
 
 const isLoadingButton = ref(false)

@@ -7,7 +7,7 @@ const props = defineProps<{
   date: object
 }>()
 
-const slideover = useSlideover()
+const slideover = useOverlay()
 const { t } = useI18n()
 
 const isCustomActivityVisible = ref(false)

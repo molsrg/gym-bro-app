@@ -6,7 +6,7 @@ import { language } from '~/constants/app/language'
 import { useQuestions } from '~/constants/app/questions'
 
 const { t, setLocale } = useI18n()
-const modal = useModal()
+const modal = useOverlay()
 // Language
 const selectedLanguage = computed({
   get: () => useLocaleStore().locale,

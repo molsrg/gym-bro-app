@@ -7,7 +7,7 @@ defineProps<{
 }>()
 
 const { t, setLocale } = useI18n()
-const modal = useModal()
+const modal = useOverlay()
 
 // Language
 const selectedLanguage = computed({

@@ -9,8 +9,8 @@ import {
   isObjectInArray,
 } from '~/helpers/calendar.helper'
 
-const slideover = useSlideover()
-const modal = useModal()
+const slideover = useOverlay()
+const modal = useOverlay()
 const { typesTraining } = useTrainingInfo()
 // TODO: remove this when the API is ready
 onMounted(async () => {

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ticketsTopic } from '~/constants/app/settings'
 
-const modal = useModal()
+const modal = useOverlay()
 const { t } = useI18n()
 
 const selectedTopic = ref(ticketsTopic[0])

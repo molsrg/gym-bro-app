@@ -8,7 +8,7 @@ const props = defineProps<{
   config: object
 }>()
 
-const modal = useModal()
+const modal = useOverlay()
 const { t } = useI18n()
 
 const isLoadingDelete = ref(false)
