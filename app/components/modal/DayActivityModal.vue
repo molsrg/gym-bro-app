@@ -122,35 +122,38 @@ function resetModal() {
         <USeparator :label="$t('modal.planning.or')" />
 
         <div class="flex flex-col gap-2">
-          <UCollapsible
-            :open="isCustomActivityVisible"
-            :ui="{ root: 'flex gap-1 flex-col', content: 'flex gap-2 flex-col' }"
-            :unmount-on-hide="false"
-          >
+          <div class="flex flex-col gap-1">
             <USwitch v-model="isCustomActivityVisible" :label="t('modal.mainActive.customActivity.switch')" />
-            <template #content>
-              <p
-                class="text-justify text-sm text-gray-500 "
-                v-html="t('modal.mainActive.customActivity.description')"
-              />
-              <UInput v-model="customActivity" :placeholder="t('modal.mainActive.customActivity.placeholder')" />
-            </template>
-          </UCollapsible>
+            <UCollapsible
+              :open="isCustomActivityVisible"
+              :ui="{ root: 'flex gap-1 flex-col', content: 'flex gap-2 flex-col' }"
+              :unmount-on-hide="false"
+            >
+              <template #content>
+                <p
+                  class="text-justify text-sm text-gray-500 "
+                  v-html="t('modal.mainActive.customActivity.description')"
+                />
+                <UInput v-model="customActivity" :placeholder="t('modal.mainActive.customActivity.placeholder')" />
+              </template>
+            </UCollapsible>
+          </div>
 
-          <UCollapsible
-            :open="isCommentVisible"
-            :ui="{
-              root: 'flex gap-1 flex-col', content: 'mt-2 flex flex-col' }" :unmount-on-hide="false"
-          >
+          <div class="flex flex-col gap-1">
             <USwitch v-model="isCommentVisible" :label="t('modal.mainActive.commentTraining.switch')" />
-
-            <template #content>
-              <UTextarea
-                v-model="commentTraining" :placeholder="t('modal.mainActive.commentTraining.placeholder')"
-                autoresize maxrows="10"
-              />
-            </template>
-          </UCollapsible>
+            <UCollapsible
+              :open="isCommentVisible"
+              :ui="{
+                root: 'flex gap-1 flex-col', content: 'mt-2 flex flex-col' }" :unmount-on-hide="false"
+            >
+              <template #content>
+                <UTextarea
+                  v-model="commentTraining" :placeholder="t('modal.mainActive.commentTraining.placeholder')"
+                  autoresize maxrows="10"
+                />
+              </template>
+            </UCollapsible>
+          </div>
         </div>
       </div>
     </template>

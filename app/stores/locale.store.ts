@@ -1,7 +1,6 @@
 import { useCloudStorage } from 'vue-tg/latest'
 
 export const useLocaleStore = defineStore('localeStore', {
-  persist: true,
   state: () => ({
     locale: 'ru',
   }),

@@ -46,7 +46,6 @@ async function openDayActivityModal(date) {
 
 <template>
   <div class="flex flex-col items-center justify-center gap-2">
-    <UButton label="1223" color="tertiary" />
     <UCollapsible
       v-if="useAppStore().isAppSettings(1)" class="flex flex-col w-full gap-0.5"
     >
